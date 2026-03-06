@@ -16,5 +16,5 @@ main_router.include_router(auth_router)
 from .index import index_router
 main_router.include_router(index_router)
 
-from .app import app_router
-main_router.include_router(app_router)
+from .pokemon import pokemon_router
+main_router.include_router(pokemon_router)

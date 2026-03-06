@@ -10,6 +10,8 @@
 
     #wrapper {
         display: flex;
+        height: 100vh;
+        overflow: hidden;
     }
 
     #sidebar {
@@ -44,6 +46,7 @@
         display: flex;
         flex-direction: column;
         background-color: #f8f9fa;
+        overflow-y: auto;
     }
 
     .card {
@@ -69,22 +72,17 @@
 <div id="wrapper">
 
     <nav id="sidebar" class="p-3 d-flex flex-column vh-100">
-        <h4 class="text-white mb-4 text-center py-4">Project Template</h4>
+        <h4 class="text-white mb-4 text-center py-4">Assignment 2</h4>
 
         <ul class="nav nav-pills flex-column gap-2 flex-grow-1">
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center {{ 'active' if request.path == '/app' }}" href="/app">
+                <a class="nav-link d-flex align-items-center {{ 'active' if request.path == '/pokemon' }}"
+                    href="/pokemon">
                     <span class="material-icons me-2">dashboard</span>
-                    Dashboard
+                    Pokemon
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link d-flex align-items-center {{ 'active' if request.path == '/users' }}" href="/users">
-                    <span class="material-icons me-2">people</span>
-                    Users
-                </a>
-            </li>
-            
+          
             <li class="nav-item mt-auto">
                 <a class="nav-link d-flex align-items-center text-danger" href="/logout">
                     <span class="material-icons me-2">logout</span>
@@ -95,7 +93,7 @@
     </nav>
 
     <div id="content">
-        <nav class="navbar navbar-expand-lg bg-white mb-4 px-3 rounded-3 shadow-sm">
+        <nav class="navbar navbar-expand-lg bg-white mb-4 px-3 rounded-3 shadow-sm ">
             <button class="btn btn-outline-secondary" id="menu-toggle">
                 <span class="material-icons md-dark">menu</span>
             </button>
@@ -104,11 +102,11 @@
                 <span class="fw-semibold">Welcome, {{user.username}}</span>
             </div>
         </nav>
-        
+
         <div class="row">
             <div class="col-12">
                 {% for message in get_flashed_messages(request) %}
-                    <div class="alert alert-{{ message.type }}" role="alert">{{ message.message }}</div>
+                <div class="alert alert-{{ message.type }}" role="alert">{{ message.message }}</div>
                 {% endfor %}
             </div>
         </div>

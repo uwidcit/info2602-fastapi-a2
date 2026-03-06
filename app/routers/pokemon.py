@@ -9,17 +9,17 @@ from typing import Annotated
 from fastapi import status
 from . import templates
 
-app_router = APIRouter()
+pokemon_router = APIRouter()
 
-@app_router.get("/app", response_class=HTMLResponse)
-async def app(
+@pokemon_router.get("/pokemon", response_class=HTMLResponse)
+async def pokemon(
     request: Request,
     user: AuthDep,
     db:SessionDep
 ):
     return templates.TemplateResponse(
         request=request, 
-        name="app.html",
+        name="pokemon.html",
         context={
             "user": user
         }

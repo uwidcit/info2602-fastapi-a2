@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='css/bootstrap.min.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='img/favicon.ico')}}">
+    <script src="{{ url_for('static', path='js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ url_for('static', path='js/jquery-4.0.0.min.js')}}"></script>
+
+    <style>
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Material Icons'),
+            local('MaterialIcons-Regular'),
+            url("{{ url_for('static', path='fonts/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2')}}") format('woff2'),
+            url("{{ url_for('static', path='fonts/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].ttf')}}") format('truetype');
+        }
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px; 
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+        }
+
+        {% block inline_styles %} {% endblock %}
+
+    </style>
+</head>
+
+<body>
+    {% block content %}{% endblock %}
+
+</body>
+
+</html>

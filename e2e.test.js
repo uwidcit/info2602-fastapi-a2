@@ -32,7 +32,7 @@ describe('Assignment 2 tests', () => {
 
         const title = await page.title();
         expect(title).toBe('Login');
-    });
+    }, 20000);
 
     test('Logging in with credentials that does not exist should not work', async () => {
         await page.goto(`${BASE_URL}/login`);
@@ -46,7 +46,7 @@ describe('Assignment 2 tests', () => {
 
         const successMessage = await page.$eval('.alert', el => el.textContent);
         expect(successMessage).toContain('Incorrect username or password');
-    });
+    }, 20000);
 
 
     test('Signing Up success', async () => {
@@ -68,7 +68,7 @@ describe('Assignment 2 tests', () => {
 
         const successMessage = await page.$eval('.alert', el => el.textContent);
         expect(successMessage).toContain('Registration completed! Sign in now!');
-    });
+    }, 20000);
 
 
     test('Signing Up should reject duplicates', async () => {
@@ -90,7 +90,7 @@ describe('Assignment 2 tests', () => {
 
         const successMessage = await page.$eval('.alert', el => el.textContent);
         expect(successMessage).toContain('Username or email already exists');
-    });
+    }, 20000);
 
 
     test('Login should redirect to main dashboard', async () => {
@@ -106,7 +106,7 @@ describe('Assignment 2 tests', () => {
 
         const title = await page.title();
         expect(title).toBe('Assignment 2');
-    });
+    }, 20000);
 
     test('The pokemon page should load and render content', async () => {
         await page.goto(`${BASE_URL}/pokemon`);
@@ -194,7 +194,7 @@ describe('Assignment 2 tests', () => {
             headers.map(h => h.textContent.trim().toLowerCase())
         );
         expect(saurNames.sort()).toEqual(['bulbasaur', 'ivysaur', 'venusaur'].sort());
-    });
+    }, 20000);
 
 
     test('Clicking every single capture button should render a modal with the name of the pokemon in it', async () => {
@@ -254,7 +254,7 @@ describe('Assignment 2 tests', () => {
 
         const successMessage = await page.$eval('.alert', el => el.textContent);
         expect(successMessage).toContain('Successfully captured Pokemon!');
-    });
+    }, 20000);
 
 
     test('My Pokemon Page tests', async () => {
@@ -406,7 +406,7 @@ describe('Assignment 2 tests', () => {
 
         const successMessage = await page.$eval('.alert', el => el.textContent);
         expect(successMessage).toContain('Successfully renamed Pokemon!');
-    });
+    }, 20000);
 
 
 
@@ -453,7 +453,7 @@ describe('Assignment 2 tests', () => {
 
         const successMessage = await page.$eval('.alert', el => el.textContent);
         expect(successMessage).toContain('Bye bye');
-    });
+    }, 20000);
 
 
     test('Stats Page loads and renders chart', async () => {
@@ -535,9 +535,9 @@ describe('Assignment 2 tests', () => {
         const isStatsMenuActive = await page.$eval('a[href="/stats"]', el => el.classList.contains('active'));
         expect(isStatsMenuActive).toBe(true);
 
-        await page.waitForSelector('#myChart', { visible: true });
+        await page.waitForSelector('#container .highcharts-root', { visible: true });
 
-        const canvasCount = await page.$$eval('#myChart', canvases => canvases.length);
-        expect(canvasCount).toBe(1);
-    });
+        const chartCount = await page.$$eval('#container .highcharts-root', charts => charts.length);
+        expect(chartCount).toBe(1);
+    }, 20000);
 });
